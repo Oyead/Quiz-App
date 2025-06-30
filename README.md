@@ -1,6 +1,6 @@
 QUIZ APP
 This is a dynamic quiz application built with Next.js and TypeScript. It provides an interactive way for users to test their knowledge across various categories.
-
+Live Demo: https://quiz-app-oyead.vercel.app/
 Features
 Multiple Game Modes:
 Standard Quiz: Go through a predefined set of questions sequentially.
