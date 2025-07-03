@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React, { useState, useEffect } from "react";
 import questions from "@/data/questions.json";
 
@@ -19,13 +19,12 @@ function shuffle<T>(array: T[]): T[] {
 }
 
 type QuizBoxProps = {
-    questions?: typeof import('@/data/questions.json');
+  questions?: typeof import('@/data/questions.json');
   mode?: "sequential" | "random";
 };
 
-
-const QuizBox: React.FC<QuizBoxProps> = ({questions: questionsProp, mode = "sequential" }) => {
-    const questionsToUse = questionsProp ?? questions;
+const QuizBox: React.FC<QuizBoxProps> = ({ questions: questionsProp, mode = "sequential" }) => {
+  const questionsToUse = questionsProp ?? questions;
 
   const [questionPool, setQuestionPool] = useState([...questionsToUse]);
   const [currentQuestion, setCurrentQuestion] = useState(questionsToUse[0]);
@@ -80,9 +79,9 @@ const QuizBox: React.FC<QuizBoxProps> = ({questions: questionsProp, mode = "sequ
 
   if (showScore) {
     return (
-      <div className="text-center p-8 bg-black rounded-lg border-x-white">
-        <h1 className="text-2xl font-bold mb-4">Quiz Finished!</h1>
-        <p className="text-lg">
+      <div className="text-center p-6 sm:p-8 bg-black text-white rounded-lg max-w-xl mx-auto mt-8 shadow-lg">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-4">Quiz Finished!</h1>
+        <p className="text-lg sm:text-xl">
           Your score: <span className="font-semibold">{score}</span> / {questions.length}
         </p>
       </div>
@@ -94,16 +93,20 @@ const QuizBox: React.FC<QuizBoxProps> = ({questions: questionsProp, mode = "sequ
   }
 
   return (
-    <div className="bg-[#2a2424] p-12 rounded-lg shadow-md w-full">
-      <p className="font-semibold text-yellow-400 mb-2">Question {currentQuestion.id}</p>
-      <h2 className="text-2xl font-semibold mb-6">{currentQuestion.question}</h2>
+    <div className="bg-[#2a2424] text-white p-6 sm:p-8 rounded-lg shadow-md w-full max-w-3xl mx-auto mt-6">
+      <p className="font-semibold text-yellow-400 mb-2 text-sm sm:text-base">
+        Question {currentQuestion.id}
+      </p>
+      <h2 className="text-xl sm:text-2xl font-semibold mb-6">
+        {currentQuestion.question}
+      </h2>
 
       <ul className="space-y-3 mb-8">
         {shuffledAnswers.map((item, index) => (
           <li key={index}>
             <button
               onClick={() => handleClick(item)}
-              className={`w-full p-3 rounded-lg text-left transition-colors ${
+              className={`w-full p-3 sm:p-4 rounded-lg text-left text-sm sm:text-base transition-colors ${
                 selectedAnswer
                   ? item === currentQuestion.answer
                     ? "bg-green-500"
@@ -122,7 +125,7 @@ const QuizBox: React.FC<QuizBoxProps> = ({questions: questionsProp, mode = "sequ
 
       <button
         onClick={handleNext}
-        className={`w-full py-2 px-4 rounded-lg ${
+        className={`w-full py-2 px-4 rounded-lg text-sm sm:text-base ${
           selectedAnswer
             ? "bg-blue-600 hover:bg-blue-700 text-white"
             : "bg-gray-300 text-gray-500 cursor-not-allowed"
